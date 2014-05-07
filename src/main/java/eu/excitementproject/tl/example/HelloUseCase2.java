@@ -3,12 +3,9 @@ package eu.excitementproject.tl.example;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 
 import org.apache.uima.jcas.JCas;
-import org.junit.Assert;
 
-import eu.excitement.type.tl.CategoryAnnotation;
 import eu.excitement.type.tl.CategoryDecision;
 import eu.excitementproject.eop.lap.LAPAccess;
 import eu.excitementproject.eop.lap.LAPException;
