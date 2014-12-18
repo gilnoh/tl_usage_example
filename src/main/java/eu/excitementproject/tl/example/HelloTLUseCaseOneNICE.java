@@ -1,8 +1,20 @@
 package eu.excitementproject.tl.example;
 
-import eu.excitementproject.eop.core.MaxEntClassificationEDA;
-import eu.excitementproject.eop.lap.dkpro.TreeTaggerEN;
-import eu.excitementproject.tl.demo.DemoUseCase1NICEEnglish;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.xml.transform.TransformerException;
+
+import eu.excitementproject.eop.common.EDAException;
+import eu.excitementproject.eop.common.exception.ComponentException;
+import eu.excitementproject.eop.common.exception.ConfigurationException;
+import eu.excitementproject.tl.composition.exceptions.EntailmentGraphRawException;
+import eu.excitementproject.tl.composition.exceptions.GraphMergerException;
+import eu.excitementproject.tl.composition.exceptions.GraphOptimizerException;
+import eu.excitementproject.tl.decomposition.exceptions.FragmentAnnotatorException;
+import eu.excitementproject.tl.decomposition.exceptions.FragmentGraphGeneratorException;
+import eu.excitementproject.tl.decomposition.exceptions.ModifierAnnotatorException;
+import eu.excitementproject.tl.demo.UseCaseOneFromXMIs;
 
 
 /**
@@ -38,15 +50,29 @@ import eu.excitementproject.tl.demo.DemoUseCase1NICEEnglish;
 public class HelloTLUseCaseOneNICE {
 
 	public static void main(String[] args) {
-
 		
+		// to run for a different cluster change the cluster name
 		String configFileName = "src/test/resources/EOP_configurations/MaxEntClassificationEDA_Base_EN.xml";
 		String dataDir = "src/test/resources/data/nice_email_1/";
 		String outputFolder = "src/test/outputs/";
 		int fileNumberLimit = 4;
 		
-		DemoUseCase1NICEEnglish demoEN = new DemoUseCase1NICEEnglish(configFileName, dataDir, fileNumberLimit, outputFolder, TreeTaggerEN.class, MaxEntClassificationEDA.class);		
-		demoEN.inspectResults();		
+		UseCaseOneFromXMIs useOne;
+		try {
+			
+			useOne = new UseCaseOneFromXMIs(configFileName, dataDir, fileNumberLimit, outputFolder);
+			useOne.inspectResults();
+
+		} catch (ConfigurationException | SecurityException | IllegalArgumentException
+				| ComponentException
+				| FragmentAnnotatorException | ModifierAnnotatorException
+				| GraphMergerException | GraphOptimizerException
+				| FragmentGraphGeneratorException | IOException
+				| EntailmentGraphRawException | TransformerException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException | EDAException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }
