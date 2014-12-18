@@ -119,7 +119,7 @@ public class HelloUseCase2 {
 			Set<FragmentGraph> fragmentGraphs;
 			fragmentGraphs = fgg.generateFragmentGraphs(aJCas);
 			System.out.println("Processed input text, adding fragments and modifiers.");
-			NodeMatcher nm = new NodeMatcherLongestOnly(entailmentGraph); 
+			NodeMatcher nm = new NodeMatcherLongestOnly(entailmentGraph, false); 
 			for (FragmentGraph fragmentGraph : fragmentGraphs) {
 				Set<NodeMatch> matches;
 				matches = nm.findMatchingNodesInGraph(fragmentGraph);
